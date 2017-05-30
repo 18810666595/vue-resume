@@ -22,9 +22,10 @@ var app = new Vue({
     },
     methods: {
         addTodo: function(){
+            var date = new Date()
             this.todoList.push({
                 title: this.newTodo,
-                createdAt: new Date(),
+                createdAt: date.toString().slice(0,15),
                 done: false
             })
             this.newTodo = ''

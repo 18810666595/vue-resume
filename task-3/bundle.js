@@ -9818,9 +9818,10 @@ var app = new _vue2.default({
     },
     methods: {
         addTodo: function addTodo() {
+            var date = new Date();
             this.todoList.push({
                 title: this.newTodo,
-                createdAt: new Date(),
+                createdAt: date.toString().slice(0, 15),
                 done: false
             });
             this.newTodo = '';
