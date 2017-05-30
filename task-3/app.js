@@ -11,7 +11,8 @@ var app = new Vue({
     created: function(){
         //onbeforeunload 事件指在窗口刷新或关闭时候执行
         window.onbeforeunload = ()=>{
-            let dataString = JSON.parse(this.todoList)
+            let dataString = JSON.stringify(this.todoList)
+            console.log(dataString);
             window.localStorage.setItem('myTodos', dataString)
         }
 

@@ -9807,7 +9807,8 @@ var app = new _vue2.default({
 
         //onbeforeunload 事件指在窗口刷新或关闭时候执行
         window.onbeforeunload = function () {
-            var dataString = JSON.parse(_this.todoList);
+            var dataString = JSON.stringify(_this.todoList);
+            console.log(dataString);
             window.localStorage.setItem('myTodos', dataString);
         };
 
