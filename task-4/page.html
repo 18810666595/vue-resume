@@ -13,12 +13,46 @@
             padding: 0;
         }
         #app {
-            width: 600px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 10px;
             border: 2px dotted #000;
             border-radius: 5px;
-            background: #ffdab9;
+            background: #FFEBCD;
             margin-left: auto;
             margin-right: auto;
+        }
+        #app .btn {
+            width: 100%;
+            font-size: 1.5rem;
+            border: 1px solid #87CEEB;
+            border-radius: 5px;
+            background: #87CEEB;
+        }
+        #app .msg {
+            display: inline-block;
+            width: 80px;
+            font-size: 1.2rem;
+        }
+        #app .formRow {
+            margin: 15px 0;
+        }
+        #app .formRow input {
+            display: inline-block;
+            box-sizing: border-box;
+            width: 220px;
+            padding: 5px;
+            font-size: 1.2rem;
+            border: 2px solid #DCDCDC;
+            border-radius: 5px;
+        }
+        #app .formRow input:focus {
+            border: 2px solid #DB7093;
+            border-radius: 5px;
+            outline: none;
         }
     </style>
 </head>
@@ -33,26 +67,26 @@
             <div class="signUp" v-if="actionType == 'signUp'">
                 <form @submit.prevent='signUp'>
                     <div class="formRow">
-                        用户名<input type="text" v-model="formData.username">
+                        <span class="msg">用户名</span><input type="text" v-model="formData.username" placeholder="username">
                     </div>
                     <div class="formRow">
-                        密码<input type="password" v-model="formData.password">
+                        <span class="msg">密码</span><input type="password" v-model="formData.password" placeholder="password">
                     </div>
                     <div class="formActions">
-                        <input type="submit" name="" value="注册">
+                        <input type="submit" class="btn" name="" value="注册">
                     </div>
                 </form>
             </div>
             <div class="login" v-if="actionType=='login'">
                 <form @submit.prevent='login'>
                     <div class="formRow" >
-                        用户名<input type="text" v-model="formData.username">
+                        <span class="msg">用户名</span><input type="text" v-model="formData.username" placeholder="username">
                     </div>
                     <div class="formRow">
-                        密码<input type="password" v-model="formData.password">
+                        <span class="msg">密码</span><input type="password" v-model="formData.password" placeholder="password">
                     </div>
                     <div class="formActions">
-                        <input type="submit" name="" value="登陆">
+                        <input type="submit" class="btn" name="" value="登陆">
                     </div>
                 </form>
             </div>
@@ -65,14 +99,14 @@
                 <li v-for="todo in todoList" class="todo">
                     <input class="todotitle" type="checkbox" v-model="todo.done">{{todo.title}}
                     <div class="done">
-                        <span>{{todo.createdAt}}</span>
+                        <span class="time">{{todo.createdAt}}</span>
                         <span v-if="todo.done">已完成</span>
                         <span v-else>未完成</span>
-                        <button class="cancel" @click="removeTodo(todo)">x</button>
                     </div>
+                    <button class="cancel" @click="removeTodo(todo)">x</button>
                 </li>
             </ul>
-            <p><button @click="logout">登出</button></p>
+            <p><button class="btn" @click="logout">登出</button></p>
 
         </section>
 

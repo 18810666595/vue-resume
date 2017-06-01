@@ -45,9 +45,10 @@ var app = new Vue({
     methods: {
         addTodo: function(){
             var date = new Date()
+            console.log(date.toLocaleString());
             this.todoList.push({
                 title: this.newTodo,
-                createdAt: date.toString().slice(0,15),
+                createdAt: date.toLocaleString(),
                 done: false
             })
             this.newTodo = ''
