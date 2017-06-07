@@ -56,9 +56,9 @@
                         {field: "contacts", icon: "phone"},
                     ],
                     profile: {
-                        name: "",
-                        city: "",
-                        title: ""
+                        name: "陈功",
+                        city: "北京",
+                        title: "应聘前端"
                     },
                     "work history": [
                         {company: "AL", content: "我的第二份工作是"},
