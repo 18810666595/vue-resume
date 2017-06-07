@@ -2,13 +2,6 @@
     <div id="resumeEditor">
         <nav>
             <ol>
-                <!-- <li class="active"> x </li>
-                <li> x </li>
-                <li> x </li>
-                <li> x </li>
-                <li> x </li>
-                <li> x </li>
-                <li> x </li> -->
                 <li v-for="(item,index) in resume.config"
                 :class="{active: item.field ===selected}"
                 @click="selected = item.field"
@@ -25,7 +18,8 @@
                     <div class="subitem" v-for="subitem in resume[item.field]">
                         <div class="resumeField" v-for="(value,key) in subitem">
                             <label>{{key}}</label>
-                            <input type="text"  :value="value">
+                            <!-- <input type="text"  :value="value" > -->
+                            <input type="text" :value="value"  @input="subitem[key] = $event.target.value">
                         </div>
                         <hr>
                     </div>
@@ -35,6 +29,10 @@
                     <input type="text" v-model="resume[item.field][key]">
                 </div>
             </li>
+            <!-- <li>  //测试代码
+                {{count}}
+                <button @click="add">test</button>
+            </li> -->
         </ol>
     </div>
 </template>
@@ -42,48 +40,27 @@
 <script>
     export default{
         name: "ResumeEditor",
-        data() {
-            return {
-                selected:"profile",
-                resume: {
-                    // visibleItems:["profile", "work history", "education", "projects", "awards", "contacts", "others"],
-                    config: [
-                        {field: "profile", icon: "id"},
-                        {field: "work history", icon: "work"},
-                        {field: "education", icon: "book"},
-                        {field: "projects", icon: "heart"},
-                        {field: "awards", icon: "cup"},
-                        {field: "contacts", icon: "phone"},
-                    ],
-                    profile: {
-                        name: "陈功",
-                        city: "北京",
-                        title: "应聘前端"
-                    },
-                    "work history": [
-                        {company: "AL", content: "我的第二份工作是"},
-                        {company: "TX", content: "我的第一份工作是"}
-                    ],
-                    education: [
-                        {school: "AL", content: "文字"},
-                        {school: "TX", content: "文字"}
-                    ],
-                    projects: [
-                        {name: "project A", content: "文字"},
-                        {name: "project B", content: "文字"}
-                    ],
-                    awards: [
-                        {name: "awards A", content: "文字"},
-                        {name: "awards B", content: "文字"}
-                    ],
-                    contacts: [
-                        {contact: "phone", content: "18810666595"},
-                        {contact: "QQ", content: "12345678"}
-                    ],
-                    others:[]
+        computed: {
+            // count (){  //测试代码
+            //     return this.$store.state.count
+            // },
+            selected: {
+                get(){
+                    return this.$store.state.selected
+                },
+                set(value){
+                    return this.$store.commit("switchTab", value)
                 }
+            },
+            resume (){
+                return this.$store.state.resume
             }
-        }
+        },
+        methods: {
+            // add (){  //测试代码
+            //     this.$store.commit("increment")
+            // }
+        },
     }
 </script>
 
