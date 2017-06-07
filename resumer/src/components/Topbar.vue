@@ -28,6 +28,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 0 16px;
     }
     #topbar .logo {
         font-size: 24px;
