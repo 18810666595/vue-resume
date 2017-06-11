@@ -68,6 +68,7 @@
 </template>
 
 <script>
+console.log("ResumePreview start");
     export default{
         name: "ResumePreview",
         computed: {
@@ -79,6 +80,7 @@
         //     console.log(this.resume);
         // }
     }
+console.log("ResumePreview end");
 </script>
 
 <style lang="scss">

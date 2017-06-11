@@ -1,5 +1,5 @@
 <template>
-<div class="page">
+<!-- <div class="page">
     <header>
         <Topbar/>
     </header>
@@ -7,10 +7,23 @@
         <ResumeEditor/>
         <ResumePreview/>
     </main>
+</div> -->
+
+<div>
+    <div class="page">
+        <header>
+            <Topbar/>
+        </header>
+        <main>
+            <ResumeEditor/>
+            <ResumePreview/>
+        </main>
+    </div>
 </div>
 </template>
 
 <script>
+console.log("App start");
 import "normalize.css/normalize.css"
 import "./assets/reset.css"
 
@@ -20,6 +33,8 @@ import ResumePreview from "./components/ResumePreview"
 import icons from "./assets/icons"
 
 import store from "./store/index"
+import AV from "./lib/leancloud"
+import getAVUser from "./lib/getAVUser"
 
 export default {
   name: 'app',
@@ -32,8 +47,16 @@ export default {
   components: {Topbar, ResumeEditor, ResumePreview},
   created(){
       document.body.insertAdjacentHTML('afterbegin', icons) //
+      let state = localStorage.getItem('state')
+      if(state){
+          state = JSON.parse(state)
+      }
+    //   this.$store.commit("initState", state)
+      this.$store.commit("setUser", getAVUser())
   }
 }
+
+console.log("App end");
 </script>
 
 <style lang="scss">
